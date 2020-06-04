@@ -5,21 +5,14 @@ class StringArgumentType extends ArgumentType {
 		super(client, 'string');
 	}
 
-	validate(val, msg, arg) {
-		if(arg.oneOf && !arg.oneOf.includes(val.toLowerCase())) {
-			return `Please enter one of the following options: ${arg.oneOf.map(opt => `\`${opt}\``).join(', ')}`;
-		}
-		if(arg.min !== null && typeof arg.min !== 'undefined' && val.length < arg.min) {
-			return `Please keep the ${arg.label} above or exactly ${arg.min} characters.`;
-		}
-		if(arg.max !== null && typeof arg.max !== 'undefined' && val.length > arg.max) {
-			return `Please keep the ${arg.label} below or exactly ${arg.max} characters.`;
-		}
-		return true;
+	validate(value, msg, arg) {
+		return Boolean(value) &&
+			(arg.min === null || typeof arg.min === 'undefined' || value.length >= arg.min) &&
+			(arg.max === null || typeof arg.max === 'undefined' || value.length <= arg.max);
 	}
 
-	parse(val) {
-		return val;
+	parse(value) {
+		return value;
 	}
 }
 

@@ -1,5 +1,6 @@
-const { oneLine } = require('common-tags');
+const oneLine = require('common-tags').oneLine;
 const Command = require('../base');
+const Discord = require('discord.js');
 
 module.exports = class PingCommand extends Command {
 	constructor(client) {
@@ -7,22 +8,33 @@ module.exports = class PingCommand extends Command {
 			name: 'ping',
 			group: 'util',
 			memberName: 'ping',
-			description: 'Checks the bot\'s ping to the Discord server.',
+			description: 'Botun pingini gösterir.',
 			throttling: {
-				usages: 5,
+				usages: 1,
 				duration: 10
 			}
 		});
 	}
 
 	async run(msg) {
-		const pingMsg = await msg.reply('Pinging...');
-		return pingMsg.edit(oneLine`
-			${msg.channel.type !== 'dm' ? `${msg.author},` : ''}
-			Pong! The message round-trip took ${
-				(pingMsg.editedTimestamp || pingMsg.createdTimestamp) - (msg.editedTimestamp || msg.createdTimestamp)
-			}ms.
-			${this.client.ws.ping ? `The heartbeat ping is ${Math.round(this.client.ws.ping)}ms.` : ''}
-		`);
+		if(!msg.editable) {
+			const pingMsg = await msg.reply('Hesaplanıyor...');
+			const embed = new Discord.RichEmbed()
+			.setDescription(oneLine`
+				:ping_pong: Mesaj gecikmesi: ${(pingMsg.createdTimestamp - msg.createdTimestamp) / 1000}s.
+				${this.client.ping ? `Normal gecikme: ${Math.round(this.client.ping / 1000)}s.` : ''}
+			`);
+			
+			return pingMsg.edit(msg.channel.type !== 'dm' ? `${msg.author},` : '', { embed });
+		} else {
+			await msg.edit('Hesaplanıyor...');
+			const embed = new Discord.RichEmbed()
+			.setDescription(oneLine`
+				:ping_pong: Mesaj gecikmesi: ${(msg.editedTimestamp - msg.createdTimestamp) / 1000}s.
+				${this.client.ping ? `Normal gecikme: ${Math.round(this.client.ping / 1000)}s.` : ''}
+			`);
+			
+			return msg.edit({ embed });
+		}
 	}
 };

@@ -2,11 +2,11 @@
 [![Discord](https://discordapp.com/api/guilds/222078108977594368/embed.png)](https://discord.gg/bRCvFy9)
 [![Downloads](https://img.shields.io/npm/dt/discord.js-commando.svg)](https://www.npmjs.com/package/discord.js-commando)
 [![Version](https://img.shields.io/npm/v/discord.js-commando.svg)](https://www.npmjs.com/package/discord.js-commando)
-[![Dependency status](https://david-dm.org/discordjs/Commando.svg)](https://david-dm.org/discordjs/Commando)
-[![Build status](https://travis-ci.org/discordjs/Commando.svg)](https://travis-ci.org/discordjs/Commando)
+[![Dependency status](https://david-dm.org/Gawdl3y/discord.js-commando.svg)](https://david-dm.org/Gawdl3y/discord.js-commando)
+[![Build status](https://travis-ci.org/hydrabolt/discord.js.svg)](https://travis-ci.org/hydrabolt/discord.js)
 
 ## About
-Commando is the official command framework for [discord.js](https://github.com/discordjs/discord.js).
+Commando is the official command framework for [discord.js](https://github.com/hydrabolt/discord.js).
 It is flexible, fully object-oriented, easy to use, and makes it trivial to create your own powerful commands.
 Additionally, it makes full use of ES2017's `async`/`await` functionality for clear, concise code that is simple to write and easy to comprehend.
 
@@ -20,7 +20,6 @@ Additionally, it makes full use of ES2017's `async`/`await` functionality for cl
 		- Basic types (string, integer, float, boolean)
 		- Discord objects (user, member, role, channel, message)
 		- User-defined custom types
-		- Union types
 	* Automatic re-prompting of invalid arguments
 	* Optional arguments with default values
 	* Infinite arguments (arguments that accept as many values as provided)
@@ -30,5 +29,5 @@ Additionally, it makes full use of ES2017's `async`/`await` functionality for cl
 - Command throttling/cooldowns
 
 ## Installation
-**Node 8.6.0 or newer is required.**  
-`npm install discord.js-commando`
+**Node 7.6.0 or newer is required.**  
+`npm install discord.js-commando --save`

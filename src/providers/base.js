@@ -1,5 +1,5 @@
-/* eslint-disable no-unused-vars */
-const { Guild } = require('discord.js');
+/* eslint-disable no-unused-vars, valid-jsdoc */
+const Guild = require('discord.js').Guild;
 
 /**
  * Loads and stores settings associated with guilds
